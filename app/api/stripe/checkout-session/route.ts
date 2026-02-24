@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import { stripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
           quantity: 1,
         },
       ],
-      success_url: `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/api/auth/callback/stripe?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/profile?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url:
         cancelUrl || `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/`,
       customer_update: {

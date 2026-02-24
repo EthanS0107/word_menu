@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import Link from "next/link";
 import SubscribeButton from "./components/SubscribeButton";
 
@@ -7,7 +7,8 @@ export default async function LandingPage() {
   const session: any = await getServerSession(authOptions);
 
   const isActive = !!session?.user?.isActive;
-  const isSubscribed = isActive;
+  const isAdmin = !!session?.user?.isAdmin;
+  const isSubscribed = isActive || isAdmin;
 
   const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID;
 
@@ -49,11 +50,21 @@ export default async function LandingPage() {
           ) : (
             <div className="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 w-full max-w-md">
               <p className="text-lg font-medium text-gray-900 mb-2">
-                Bienvenue !
+                Bienvenue,{" "}
+                <span className="font-bold">
+                  {session.user.name || session.user.email}
+                </span>{" "}
+                !
               </p>
               <p className="text-sm text-gray-500 mb-6 break-all font-mono bg-gray-200 p-1 rounded inline-block">
                 {session.user.email}
               </p>
+              <Link
+                href="/profile"
+                className="text-indigo-600 underline text-sm mb-4 inline-block"
+              >
+                Voir mon profil
+              </Link>
 
               {!isSubscribed ? (
                 <div className="mt-4 border-t pt-4">

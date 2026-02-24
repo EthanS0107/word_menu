@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
 
 export default function SubscribeButton({ priceId }: { priceId: string }) {
   const [loading, setLoading] = useState(false);
