@@ -329,6 +329,17 @@ export default function SignInPage() {
               </div>
             </div>
 
+            {!isRegister && (
+              <div className="flex justify-end -mt-2">
+                <Link
+                  href="/auth/forgot-password"
+                  className="text-xs text-indigo-500 hover:text-indigo-600 font-medium transition-colors"
+                >
+                  Mot de passe oublié ?
+                </Link>
+              </div>
+            )}
+
             {error && (
               <div className="flex items-center gap-3 bg-red-50 border border-red-200/80 text-red-600 text-sm px-4 py-3 rounded-xl">
                 <svg
