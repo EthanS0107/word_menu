@@ -11,7 +11,16 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function sendPasswordResetEmail(email: string, token: string) {
-  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+  // Sur Vercel, VERCEL_URL est défini automatiquement (sans https://)
+  // En local, on utilise NEXTAUTH_URL ou localhost
+  const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+  const host =
+    process.env.NEXTAUTH_URL || process.env.VERCEL_URL || "localhost:3000";
+
+  // Nettoyer l'host pour éviter les doubles protocoles si NEXTAUTH_URL contient déjà http(s)
+  const cleanHost = host.replace(/^https?:\/\//, "");
+  const baseUrl = `${protocol}://${cleanHost}`;
+
   const resetUrl = `${baseUrl}/auth/reset-password?token=${token}`;
 
   await transporter.sendMail({
