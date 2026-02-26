@@ -11,16 +11,16 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function sendPasswordResetEmail(email: string, token: string) {
-  let appUrl = process.env.NEXTAUTH_URL;
+  let appUrl = "";
 
-  // Si NEXTAUTH_URL n'est pas défini (souvent le cas sur Vercel sans config manuelle),
-  // on utilise VERCEL_URL qui est fourni automatiquement.
-  if (!appUrl && process.env.VERCEL_URL) {
+  // Sur Vercel, on utilise VERCEL_PROJECT_PRODUCTION_URL ou VERCEL_URL
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    appUrl = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  } else if (process.env.VERCEL_URL) {
     appUrl = `https://${process.env.VERCEL_URL}`;
-  }
-
-  // Fallback local si rien n'est trouvé
-  if (!appUrl) {
+  } else if (process.env.NEXTAUTH_URL) {
+    appUrl = process.env.NEXTAUTH_URL;
+  } else {
     appUrl = "http://localhost:3000";
   }
 
