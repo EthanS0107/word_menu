@@ -31,12 +31,12 @@ export async function sendPasswordResetEmail(email: string, token: string) {
   await transporter.sendMail({
     from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
     to: email,
-    subject: "Réinitialisation de votre mot de passe - Word Menu",
+    subject: "Réinitialisation de votre mot de passe - World Menu",
     html: `
       <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
         <div style="text-align: center; margin-bottom: 30px;">
           <h1 style="font-size: 28px; font-weight: 900; margin: 0;">
-            <span style="color: #111827;">Word</span>
+            <span style="color: #111827;">World</span>
             <span style="color: #0d9488;"> Menu</span>
           </h1>
         </div>

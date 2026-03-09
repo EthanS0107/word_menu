@@ -24,7 +24,7 @@ const Navbar = () => {
             className="text-2xl font-black bg-linear-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent block"
             whileHover={{ scale: 1.05 }}
           >
-            Menus du Monde
+            World Menu
           </motion.span>
           <span className="absolute -bottom-1 left-0 w-0 h-1 bg-linear-to-r from-blue-600 to-teal-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
         </Link>

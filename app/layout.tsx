@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Menus du Monde",
+  title: "World Menu",
   description: "Découvrez nos menus thématiques par pays",
 };
 

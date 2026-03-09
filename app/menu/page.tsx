@@ -29,7 +29,7 @@ export default function MenuPage() {
           transition={{ delay: 0.2 }}
           className="text-4xl md:text-6xl font-bold text-gray-900 mb-8"
         >
-          Découvrez nos Menus du Monde
+          Découvrez World Menu
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
