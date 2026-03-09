@@ -85,7 +85,7 @@ export default function SignInPage() {
           <Link href="/" className="inline-block group">
             <h1 className="text-5xl font-black mb-3">
               <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
-                Word
+                World
               </span>{" "}
               <span className="bg-gradient-to-r from-blue-600 via-teal-500 to-emerald-500 bg-clip-text text-transparent">
                 Menu
