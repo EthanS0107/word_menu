@@ -1,322 +1,193 @@
-"use client";
+﻿"use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import PageTransition from "../../components/PageTransition";
 import SectionReveal from "../../components/SectionReveal";
 
+const flagImage = "/drapeau_Benin.png";
+
+const slides = [
+  { image: "/benin_plage_1.jpg", title: "Cotonou" },
+  { image: "/ata.jpg", title: "Ata" },
+  { image: "/wassa_wassa.jpg", title: "Wassa-Wassa" },
+  { image: "/bouye.jpg", title: "Bouye" },
+];
+
 const menuItems = [
   {
-    label: "Entree",
-    dish: "Ata",
-    description:
-      "Beignet de haricots blancs croustillants, accompagnes d'une sauce pimentee.",
+    course: "Entree",
+    name: "Ata",
+    text: "Beignets croustillants de haricots blancs.",
     image: "/ata.jpg",
+    accent: "#E8112D",
   },
   {
-    label: "Plat",
-    dish: "Wassa-Wassa",
-    description:
-      "Semoule de Manioc accompagnee de sauce tomate pimentee et d'un poisson braise a la Beninoise.",
+    course: "Plat",
+    name: "Wassa-Wassa",
+    text: "Semoule de manioc, poisson braise et sauce epicee.",
     image: "/wassa_wassa.jpg",
+    accent: "#008751",
   },
   {
-    label: "Dessert",
-    dish: "Salade de Fruits",
-    description:
-      "Mangue, ananas, papaye et banane, legerement parfumes au citron vert et servis bien frais.",
+    course: "Dessert",
+    name: "Salade tropicale",
+    text: "Mangue, ananas et papaye bien fraiches.",
     image: "/salade_de_fruits_tropicaux.jpeg",
+    accent: "#FCD116",
   },
 ];
 
+const signatureDrink = {
+  name: "Bouye",
+  desc: "Boisson au fruit de baobab, veloutee, douce et tres rafraichissante.",
+  image: "/bouye.jpg",
+};
+
 export default function BeninMenu() {
+  const [active, setActive] = React.useState(0);
+
+  React.useEffect(() => {
+    const id = window.setInterval(() => {
+      setActive((p) => (p + 1) % slides.length);
+    }, 3500);
+    return () => window.clearInterval(id);
+  }, []);
+
   return (
-    <PageTransition className="min-h-screen overflow-x-hidden bg-[#060e08]">
-      {/* ===== HERO ===== */}
-      <section className="relative min-h-screen overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(0,135,81,0.15)_0%,transparent_50%),radial-gradient(ellipse_at_70%_80%,rgba(232,17,45,0.08)_0%,transparent_50%)]" />
-        <div className="noise pointer-events-none absolute inset-0" />
+    <PageTransition className="min-h-screen overflow-x-hidden bg-[#07110a] text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_12%,rgba(0,135,81,0.24),transparent_40%),radial-gradient(circle_at_84%_22%,rgba(232,17,45,0.2),transparent_35%),radial-gradient(circle_at_70%_84%,rgba(252,209,22,0.2),transparent_38%)]" />
+      <div className="noise pointer-events-none absolute inset-0" />
 
-        {/* Floating orb */}
-        <motion.div
-          animate={{ y: [-15, 15, -15], rotate: [0, -3, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -left-32 top-1/3 h-[350px] w-[350px] rounded-full bg-[#008751]/15 blur-[100px]"
-        />
-        <motion.div
-          animate={{ y: [10, -10, 10] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -right-20 bottom-1/4 h-[300px] w-[300px] rounded-full bg-[#FCD116]/8 blur-[80px]"
-        />
+      <section className="relative mx-auto max-w-7xl px-6 pb-8 pt-20 md:px-8">
+        <SectionReveal>
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-black/30 p-3">
+            <div className="relative h-[370px] overflow-hidden rounded-[1.4rem] border border-white/10 md:h-[520px]">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={slides[active].image}
+                  src={slides[active].image}
+                  alt={slides[active].title}
+                  initial={{ opacity: 0, x: 25 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -25 }}
+                  transition={{ duration: 0.55 }}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent" />
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-12 px-6 py-24 md:flex-row md:gap-16 md:px-8">
-          {/* Hero text */}
-          <div className="w-full text-center md:w-1/2 md:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#008751]/30 bg-[#008751]/10 px-5 py-2 text-xs font-semibold tracking-[0.2em] text-[#4ade80] uppercase"
-            >
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#008751]" />
-              Benin
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
-            >
-              Menu typique
-              <br />
-              <span className="bg-gradient-to-r from-[#008751] via-[#4ade80] to-[#008751] bg-clip-text text-transparent">
-                du Benin
-              </span>
-            </motion.h1>
-
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: 80 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mx-auto mt-6 h-[2px] bg-[#FCD116] md:mx-0"
-            />
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-6 max-w-lg text-lg leading-relaxed text-white/50 md:text-xl"
-            >
-              Entrez, goutez, voyagez : le Benin s&apos;invite dans votre
-              assiette.
-            </motion.p>
-          </div>
-
-          {/* Slogan card */}
-          <div className="w-full md:w-1/2">
-            <SectionReveal delay={0.4}>
-              <div className="relative">
-                {/* Glow */}
-                <div className="absolute inset-0 translate-y-4 scale-95 rounded-3xl bg-[#008751]/15 blur-[40px]" />
-                <div className="relative rounded-3xl border border-white/[0.06] bg-white/[0.03] p-10 backdrop-blur-sm md:p-12">
-                  <p className="font-display text-center text-2xl font-bold leading-relaxed text-white md:text-3xl">
-                    <span className="text-[#E8112D]">
-                      Entrez, goutez, voyagez :
-                    </span>
-                    <br />
-                    <span className="text-[#008751]">
-                      Le Benin s&apos;invite
-                    </span>
-                    <br />
-                    dans votre assiette
-                  </p>
-                </div>
+              <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-black/35 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#9ef2c3]">
+                Benin
               </div>
-            </SectionReveal>
-          </div>
-        </div>
 
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#060e08] to-transparent" />
+              <motion.div
+                whileHover={{ rotateX: 8, rotateY: -12, scale: 1.03 }}
+                transition={{ duration: 0.35 }}
+                className="absolute right-5 top-5 [perspective:1000px]"
+              >
+                <img
+                  src={flagImage}
+                  alt="Drapeau beninois"
+                  className="h-24 w-40 rounded-xl border border-white/30 object-cover shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
+                />
+              </motion.div>
+
+              <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                <div>
+                  <h1 className="font-display text-4xl sm:text-5xl">Benin en mouvement</h1>
+                  <p className="mt-2 text-white/80">Couleurs franches, rythme fort, cuisine de caractere.</p>
+                </div>
+                <p className="rounded-full bg-black/45 px-3 py-1 text-xs text-white/75">{active + 1}/{slides.length}</p>
+              </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-4 gap-2">
+              {slides.map((s, i) => (
+                <button
+                  key={s.title}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  className={`overflow-hidden rounded-xl border ${i === active ? "border-[#FCD116]" : "border-white/20"}`}
+                  aria-label={`Slide ${s.title}`}
+                >
+                  <img src={s.image} alt={s.title} className="h-14 w-full object-cover" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </SectionReveal>
       </section>
 
-      {/* ===== HISTORY ===== */}
-      <section className="relative overflow-hidden px-6 py-24 md:px-8 md:py-32">
-        <div className="absolute right-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-[#008751]/20 to-transparent" />
-
-        <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:gap-16">
-          {/* Image */}
-          <div className="order-1 w-full md:order-2 md:w-[38%]">
-            <SectionReveal delay={0.2}>
-              <div className="relative">
-                <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl bg-[#008751]/20 blur-sm" />
-                <div className="relative overflow-hidden rounded-2xl border border-white/[0.06]">
-                  <motion.img
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.6 }}
-                    src="/benin_plage_1.jpg"
-                    alt="Plage du Benin"
-                    className="h-[300px] w-full object-cover md:h-[380px]"
-                  />
-                </div>
-              </div>
-            </SectionReveal>
-          </div>
-
-          {/* Text */}
-          <div className="order-2 w-full md:order-1 md:w-[62%]">
-            <SectionReveal>
-              <div className="rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8 backdrop-blur-sm md:p-12">
-                <div className="mb-6 flex items-center gap-3">
-                  <div className="h-px w-8 bg-[#008751]" />
-                  <span className="text-xs font-semibold tracking-[0.2em] text-[#008751] uppercase">
-                    Histoire
-                  </span>
-                </div>
-                <h2 className="font-display mb-8 text-4xl font-bold text-white sm:text-5xl">
-                  Le Benin
-                </h2>
-                <p className="mb-5 text-base leading-[1.8] text-white/60">
-                  Le Benin, pays d&apos;Afrique de l&apos;Ouest, est borde par
-                  le Togo, le Nigeria, le Burkina Faso, le Niger et le golfe de
-                  Guinee. Ancien royaume du Dahomey et colonie francaise, il a
-                  obtenu son independance en 1960 et est aujourd&apos;hui une
-                  democratie stable.
-                </p>
-                <p className="text-base leading-[1.8] text-white/60">
-                  Le pays est riche en culture et traditions, notamment le
-                  vaudou, la musique, la danse et l&apos;artisanat. Son economie
-                  repose sur l&apos;agriculture (coton, noix de cajou, mais) le
-                  commerce via le port de Cotonou et le tourisme, avec des parcs
-                  nationaux comme le Pendjari et des sites historiques lies a la
-                  traite negriere.
-                </p>
-                <div className="mt-8 h-px w-full bg-gradient-to-r from-[#008751]/40 to-transparent" />
-              </div>
-            </SectionReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== MENU ===== */}
-      <section className="relative overflow-hidden px-6 py-24 md:px-8 md:py-32">
-        {/* Background glow */}
-        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#008751]/8 blur-[120px]" />
-
-        <div className="relative z-10 mx-auto max-w-7xl">
+      <section className="relative mx-auto max-w-7xl px-6 pb-14 md:px-8">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_1.1fr]">
           <SectionReveal>
-            <div className="mb-16 text-center md:mb-20">
-              <span className="mb-4 inline-block text-xs font-semibold tracking-[0.2em] text-[#008751] uppercase">
-                Gastronomie
-              </span>
-              <h2 className="font-display text-5xl font-bold text-white sm:text-6xl md:text-7xl">
-                Le Menu
-              </h2>
+            <div className="rounded-3xl border border-white/15 bg-[#102116]/80 p-7 md:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9ef2c3]">Atmosphere</p>
+              <h2 className="font-display mt-3 text-4xl">Tricolore vivant</h2>
+              <p className="mt-4 text-white/75">
+                Cette page adopte une structure hero panoramique puis des blocs
+                compacts. Le contenu suit l'energie du drapeau: vert, rouge, jaune.
+              </p>
+              <div className="mt-6 flex gap-2">
+                <span className="h-2 w-14 rounded-full bg-[#008751]" />
+                <span className="h-2 w-14 rounded-full bg-[#E8112D]" />
+                <span className="h-2 w-14 rounded-full bg-[#FCD116]" />
+              </div>
             </div>
           </SectionReveal>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {menuItems.map((item, i) => {
-              const accentColors = ["#008751", "#E8112D", "#FCD116"];
-              const accent = accentColors[i];
-
-              return (
-                <SectionReveal key={item.label} delay={0.15 * (i + 1)}>
-                  <motion.article
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="group overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] transition-colors duration-500 hover:border-white/[0.1] hover:bg-white/[0.04]"
-                  >
-                    {/* Image */}
-                    <div className="relative h-[260px] overflow-hidden">
-                      <motion.img
-                        whileHover={{ scale: 1.06 }}
-                        transition={{ duration: 0.6 }}
-                        src={item.image}
-                        alt={item.dish}
-                        className="h-full w-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#060e08] via-transparent to-transparent" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 md:p-8">
-                      <div className="mb-3 flex items-center gap-2">
-                        <div
-                          className="h-px w-6"
-                          style={{ backgroundColor: accent }}
-                        />
-                        <span
-                          className="text-xs font-semibold tracking-[0.15em] uppercase"
-                          style={{ color: accent }}
-                        >
-                          {item.label}
-                        </span>
-                      </div>
-
-                      <h3 className="font-display mb-3 text-2xl font-bold text-white">
-                        {item.dish}
-                      </h3>
-
-                      <p className="text-sm leading-[1.7] text-white/50">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    {/* Bottom accent bar */}
-                    <div
-                      className="h-[2px] w-full opacity-60"
-                      style={{ backgroundColor: accent }}
-                    />
-                  </motion.article>
-                </SectionReveal>
-              );
-            })}
-          </div>
+          <SectionReveal delay={0.1}>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="rounded-2xl border border-[#E8112D]/35 bg-[#1f1313]/75 p-5">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#ff9fa8]">Capitale</p>
+                <p className="mt-2 text-lg">Porto-Novo</p>
+              </div>
+              <div className="rounded-2xl border border-[#008751]/35 bg-[#112016]/75 p-5">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#9ef2c3]">Culture</p>
+                <p className="mt-2 text-lg">Rythmes et artisanat</p>
+              </div>
+              <div className="col-span-2 rounded-2xl border border-[#FCD116]/35 bg-[#221d0f]/70 p-5">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#ffe999]">Gout</p>
+                <p className="mt-2 text-lg">Cuisine franche, epicee et conviviale</p>
+              </div>
+            </div>
+          </SectionReveal>
         </div>
       </section>
 
-      {/* ===== SIGNATURE DRINK ===== */}
-      <section className="relative overflow-hidden px-6 pb-24 pt-12 md:px-8 md:pb-32 md:pt-16">
-        {/* Decorative orbs */}
-        <motion.div
-          animate={{ scale: [1, 1.15, 1], rotate: [0, 8, 0] }}
-          transition={{ duration: 8, repeat: Infinity }}
-          className="absolute -left-20 top-20 h-[200px] w-[200px] rounded-full border border-[#008751]/15"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.1, 1], rotate: [0, -6, 0] }}
-          transition={{ duration: 7, repeat: Infinity }}
-          className="absolute -right-20 bottom-20 h-[250px] w-[250px] rounded-full bg-[#E8112D]/5 blur-[60px]"
-        />
-
-        <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row md:gap-16">
-          {/* Drink image */}
-          <div className="w-full md:w-1/2">
-            <SectionReveal>
-              <div className="relative">
-                <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-3xl bg-[#008751]/20 blur-sm" />
-                <div className="relative overflow-hidden rounded-3xl border border-white/[0.06]">
-                  <motion.img
-                    whileHover={{ scale: 1.04 }}
-                    transition={{ duration: 0.6 }}
-                    src="/bouye.jpg"
-                    alt="Bouye"
-                    className="h-[400px] w-full object-cover md:h-[480px]"
-                  />
+      <section className="relative mx-auto max-w-7xl px-6 pb-16 md:px-8">
+        <SectionReveal>
+          <h2 className="font-display mb-8 text-center text-5xl">Menu beninois</h2>
+        </SectionReveal>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:auto-rows-fr">
+          {menuItems.map((item, i) => (
+            <SectionReveal key={item.name} delay={0.1 * (i + 1)} className="h-full">
+              <motion.article whileHover={{ y: -8 }} className="flex h-full flex-col overflow-hidden rounded-3xl border bg-[#102116]/85" style={{ borderColor: `${item.accent}66` }}>
+                <img src={item.image} alt={item.name} className="h-56 w-full object-cover" />
+                <div className="flex-1 p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: item.accent }}>{item.course}</p>
+                  <h3 className="font-display mt-2 text-3xl md:min-h-[5.5rem]">{item.name}</h3>
+                  <p className="mt-3 text-sm leading-[1.75] text-white/75 md:min-h-[5.25rem]">{item.text}</p>
                 </div>
-              </div>
+                <div className="h-1" style={{ backgroundColor: item.accent }} />
+              </motion.article>
             </SectionReveal>
-          </div>
-
-          {/* Text */}
-          <div className="w-full md:w-1/2">
-            <SectionReveal delay={0.2}>
-              <div className="rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8 backdrop-blur-sm md:p-10">
-                <div className="mb-4 flex items-center gap-2">
-                  <div className="h-px w-8 bg-[#FCD116]" />
-                  <span className="text-xs font-semibold tracking-[0.2em] text-[#FCD116] uppercase">
-                    Boisson signature
-                  </span>
-                </div>
-
-                <h2 className="font-display mb-6 text-4xl font-bold text-white sm:text-5xl">
-                  Bouye
-                </h2>
-
-                <div className="mb-6 h-[2px] w-16 bg-[#E8112D]" />
-
-                <p className="text-base leading-[1.8] text-white/60 md:text-lg">
-                  Rafraichissante, legerement acidulee et naturellement sucree,
-                  cette boisson a base de pulpe de Baobab allie saveur exotique
-                  et bienfaits sante, pour un voyage gustatif unique.
-                </p>
-              </div>
-            </SectionReveal>
-          </div>
+          ))}
         </div>
+      </section>
+
+      <section className="relative mx-auto max-w-7xl px-6 pb-24 md:px-8 md:pb-32">
+        <SectionReveal>
+          <div className="grid grid-cols-1 gap-5 rounded-[2rem] border border-white/15 bg-[#0f1f15]/85 p-3 md:grid-cols-[1fr_1fr]">
+            <img src={signatureDrink.image} alt={signatureDrink.name} className="h-72 w-full rounded-[1.4rem] object-cover md:h-full" />
+            <div className="rounded-[1.4rem] bg-[#102116]/85 p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9ef2c3]">Boisson signature</p>
+              <h2 className="font-display mt-3 text-4xl sm:text-5xl">{signatureDrink.name}</h2>
+              <p className="mt-5 text-white/75">{signatureDrink.desc}</p>
+            </div>
+          </div>
+        </SectionReveal>
       </section>
     </PageTransition>
   );

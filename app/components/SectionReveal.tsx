@@ -27,6 +27,7 @@ export default function SectionReveal({
   return (
     <div ref={ref} style={{ width, position: "relative" }} className={className}>
       <motion.div
+        className="h-full"
         variants={{
           hidden: { opacity: 0, y: 75 },
           visible: { opacity: 1, y: 0 },
