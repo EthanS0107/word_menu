@@ -6,9 +6,20 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
+const AUTH_DISABLED = true;
+
 const Navbar = () => {
   const pathname = usePathname();
   const { data: session } = useSession();
+  const effectiveSession =
+    AUTH_DISABLED || session
+      ? {
+          user: {
+            isActive: true,
+            isAdmin: false,
+          },
+        }
+      : null;
 
   return (
     <motion.nav
@@ -33,7 +44,10 @@ const Navbar = () => {
         <div className="flex items-center gap-8 font-medium text-gray-600">
           <NavLink
             href={
-              session?.user?.isActive || session?.user?.isAdmin ? "/menu" : "/"
+              effectiveSession?.user?.isActive ||
+              effectiveSession?.user?.isAdmin
+                ? "/menu"
+                : "/"
             }
             currentPath={pathname}
           >
@@ -42,7 +56,7 @@ const Navbar = () => {
           <NavLink href="/about" currentPath={pathname}>
             À propos
           </NavLink>
-          {session && (
+          {effectiveSession && (
             <Link href="/profile" className="text-indigo-600 hover:underline">
               Mon Profil
             </Link>

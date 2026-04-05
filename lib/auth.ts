@@ -28,6 +28,10 @@ export const authOptions: NextAuthOptions = {
             return null;
           }
 
+          if (!user.emailVerified) {
+            throw new Error("EMAIL_NOT_VERIFIED");
+          }
+
           const isValid = await bcrypt.compare(password, user.password);
           if (!isValid) {
             return null;

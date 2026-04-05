@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
 import Link from "next/link";
+
+const AUTH_DISABLED = true;
 
 interface ProfileUser {
   id: string;
@@ -35,6 +36,11 @@ export default function ProfileClient({ user }: { user: ProfileUser }) {
   const [showPasswordSection, setShowPasswordSection] = useState(false);
 
   const handleSave = async () => {
+    if (AUTH_DISABLED) {
+      setError("Modification désactivée temporairement.");
+      return;
+    }
+
     setLoading(true);
     setError("");
     setSuccess("");
@@ -139,7 +145,7 @@ export default function ProfileClient({ user }: { user: ProfileUser }) {
             <h2 className="text-lg font-bold text-gray-900">
               Informations personnelles
             </h2>
-            {!isEditing && (
+            {!isEditing && !AUTH_DISABLED && (
               <button
                 onClick={() => setIsEditing(true)}
                 className="px-4 py-2 text-sm font-semibold text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
@@ -148,6 +154,13 @@ export default function ProfileClient({ user }: { user: ProfileUser }) {
               </button>
             )}
           </div>
+
+          {AUTH_DISABLED && (
+            <div className="mb-6 bg-amber-50 border border-amber-200 text-amber-700 px-5 py-4 rounded-2xl text-sm font-medium">
+              Connexion désactivée temporairement: profil affiché en lecture
+              seule.
+            </div>
+          )}
 
           {isEditing ? (
             <div className="space-y-5">
@@ -331,12 +344,12 @@ export default function ProfileClient({ user }: { user: ProfileUser }) {
           >
             Retour à l'accueil
           </Link>
-          <button
-            onClick={() => signOut({ callbackUrl: "/" })}
-            className="flex-1 px-6 py-3 bg-red-50 border border-red-200 text-red-600 font-semibold rounded-2xl hover:bg-red-100 transition-all text-sm"
+          <Link
+            href="/"
+            className="flex-1 text-center px-6 py-3 bg-blue-50 border border-blue-200 text-blue-600 font-semibold rounded-2xl hover:bg-blue-100 transition-all text-sm"
           >
-            Se déconnecter
-          </button>
+            Continuer la visite
+          </Link>
         </div>
       </div>
     </div>

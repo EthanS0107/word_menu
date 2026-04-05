@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
 import { randomUUID } from "crypto";
+import { sendEmailVerification } from "@/lib/email";
 
 export async function POST(req: Request) {
   try {
@@ -68,8 +69,24 @@ export async function POST(req: Request) {
       console.error("Erreur création stripe customer:", error);
     }
 
+    // Envoi de l'email de vérification
+    try {
+      const verificationToken = await prisma.emailVerificationToken.create({
+        data: {
+          email: normalizedEmail,
+          token: randomUUID(),
+          expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24h
+        },
+      });
+      await sendEmailVerification(normalizedEmail, verificationToken.token);
+    } catch (error) {
+      console.error("Erreur envoi email de vérification:", error);
+    }
+
     return NextResponse.json(
-      { message: "Compte créé avec succès." },
+      {
+        message: "Compte créé. Vérifiez votre email pour activer votre compte.",
+      },
       { status: 201 },
     );
   } catch (error) {

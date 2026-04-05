@@ -13,6 +13,7 @@ export default function SignInPage() {
   const [lastName, setLastName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
@@ -44,9 +45,16 @@ export default function SignInPage() {
           setLoading(false);
           return;
         }
+
+        // Inscription réussie → afficher le message de vérification
+        setSuccess(
+          "Compte créé ! Un email de confirmation a été envoyé. Vérifiez votre boîte mail pour activer votre compte.",
+        );
+        setLoading(false);
+        return;
       }
 
-      // Connexion (après inscription réussie, ou directement en mode connexion)
+      // Connexion directe
       const result = await signIn("credentials", {
         email,
         password,
@@ -54,11 +62,13 @@ export default function SignInPage() {
       });
 
       if (result?.error) {
-        setError(
-          isRegister
-            ? "Compte créé mais erreur de connexion automatique. Essayez de vous connecter."
-            : "Email ou mot de passe incorrect.",
-        );
+        if (result.error.includes("EMAIL_NOT_VERIFIED")) {
+          setError(
+            "Votre email n'est pas encore vérifié. Consultez votre boîte mail.",
+          );
+        } else {
+          setError("Email ou mot de passe incorrect.");
+        }
       } else {
         router.push("/profile");
         router.refresh();
@@ -108,6 +118,7 @@ export default function SignInPage() {
               onClick={() => {
                 setIsRegister(false);
                 setError("");
+                setSuccess("");
               }}
               className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300 ${
                 !isRegister
@@ -137,6 +148,7 @@ export default function SignInPage() {
               onClick={() => {
                 setIsRegister(true);
                 setError("");
+                setSuccess("");
               }}
               className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300 ${
                 isRegister
@@ -379,6 +391,25 @@ export default function SignInPage() {
                   />
                 </svg>
                 {error}
+              </div>
+            )}
+
+            {success && (
+              <div className="flex items-start gap-3 bg-teal-50 border border-teal-200/80 text-teal-700 text-sm px-4 py-3 rounded-xl">
+                <svg
+                  className="w-5 h-5 shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                {success}
               </div>
             )}
 

@@ -4,7 +4,18 @@ import { authOptions } from "@/lib/auth";
 import { stripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 
+const AUTH_DISABLED = true;
+
 export async function POST(req: NextRequest) {
+  if (AUTH_DISABLED) {
+    return NextResponse.json(
+      {
+        error: "Paiement indisponible pendant la désactivation de la connexion",
+      },
+      { status: 503 },
+    );
+  }
+
   const session = await getServerSession(authOptions);
 
   if (!session?.user) {

@@ -4,7 +4,16 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
+const AUTH_DISABLED = true;
+
 export async function PUT(req: NextRequest) {
+  if (AUTH_DISABLED) {
+    return NextResponse.json(
+      { error: "Connexion désactivée temporairement" },
+      { status: 503 },
+    );
+  }
+
   const session = await getServerSession(authOptions);
 
   if (!session?.user?.id) {

@@ -73,7 +73,7 @@ EMAIL_SERVER_HOST="smtp.example.com"
 EMAIL_SERVER_PORT=587
 EMAIL_SERVER_USER="votre@email.com"
 EMAIL_SERVER_PASSWORD="votre-mot-de-passe"
-EMAIL_FROM="noreply@worldmenu.com"
+EMAIL_FROM="world.menu.contact@gmail.com"
 ```
 
 ## Lancement
