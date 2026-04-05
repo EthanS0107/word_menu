@@ -8,10 +8,26 @@ import SectionReveal from "../../components/SectionReveal";
 const flagImage = "/drapeau_Seychelles.png";
 
 const slides = [
-  { image: "/seychelles_plage_1.webp", title: "Anse turquoise", caption: "Eaux claires et sable fin." },
-  { image: "/seychelles_plage_2.webp", title: "Lagons", caption: "Reflets marins et lumiere douce." },
-  { image: "/seychelles_plage_3.jpg", title: "Cote sauvage", caption: "Nature dense et roche granitique." },
-  { image: "/seychelles_plage_4.jpg", title: "Coucher", caption: "Couleurs chaudes et brise oceanique." },
+  {
+    image: "/seychelles_plage_1.webp",
+    title: "Anse turquoise",
+    caption: "Eaux claires et sable fin.",
+  },
+  {
+    image: "/seychelles_plage_2.webp",
+    title: "Lagons",
+    caption: "Reflets marins et lumiere douce.",
+  },
+  {
+    image: "/seychelles_plage_3.jpg",
+    title: "Cote sauvage",
+    caption: "Nature dense et roche granitique.",
+  },
+  {
+    image: "/seychelles_plage_4.jpg",
+    title: "Coucher",
+    caption: "Couleurs chaudes et brise oceanique.",
+  },
 ];
 
 const menuItems = [
@@ -69,17 +85,31 @@ export default function SeychellesMenu() {
               </span>
             </h1>
             <p className="mx-auto mt-5 max-w-3xl text-lg text-white/76">
-              Composition immersive en axe central: drapeau totem, diaporama filmstrip
-              et cartes menu flottantes pour un style resort premium.
+              Composition immersive en axe central: drapeau totem, diaporama
+              filmstrip et cartes menu flottantes pour un style resort premium.
             </p>
 
-            <motion.div className="mx-auto mt-8 w-fit [perspective:1200px]" whileHover={{ scale: 1.04 }}>
+            <motion.div
+              className="mx-auto mt-8 w-fit [perspective:1200px]"
+              whileHover={{ scale: 1.04 }}
+            >
               <motion.div
-                animate={{ rotateY: [0, 14, 0, -14, 0], rotateX: [0, 5, 0, -5, 0] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                animate={{
+                  rotateY: [0, 14, 0, -14, 0],
+                  rotateX: [0, 5, 0, -5, 0],
+                }}
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="rounded-[1.6rem] border border-[#63d7ff]/45 bg-[#10314f]/65 p-3 shadow-[0_24px_80px_rgba(14,165,160,0.35)]"
               >
-                <img src={flagImage} alt="Drapeau seychellois" className="h-28 w-48 rounded-[1.2rem] object-cover" />
+                <img
+                  src={flagImage}
+                  alt="Drapeau seychellois"
+                  className="h-28 w-48 rounded-[1.2rem] object-cover"
+                />
               </motion.div>
             </motion.div>
           </div>
@@ -104,10 +134,16 @@ export default function SeychellesMenu() {
               </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-[#071428]/82 to-transparent" />
               <div className="absolute bottom-5 left-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.14em]">{slides[active].title}</p>
-                <p className="mt-1 text-sm text-white/75">{slides[active].caption}</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.14em]">
+                  {slides[active].title}
+                </p>
+                <p className="mt-1 text-sm text-white/75">
+                  {slides[active].caption}
+                </p>
               </div>
-              <p className="absolute right-5 top-5 rounded-full bg-black/45 px-3 py-1 text-xs text-white/75">{active + 1}/{slides.length}</p>
+              <p className="absolute right-5 top-5 rounded-full bg-black/45 px-3 py-1 text-xs text-white/75">
+                {active + 1}/{slides.length}
+              </p>
             </div>
 
             <div className="mt-4 grid grid-cols-4 gap-2">
@@ -119,7 +155,11 @@ export default function SeychellesMenu() {
                   className={`overflow-hidden rounded-xl border ${i === active ? "border-[#88ecff]" : "border-white/20"}`}
                   aria-label={`Slide ${s.title}`}
                 >
-                  <img src={s.image} alt={s.title} className="h-14 w-full object-cover" />
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className="h-14 w-full object-cover"
+                  />
                 </button>
               ))}
             </div>
@@ -131,19 +171,25 @@ export default function SeychellesMenu() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <SectionReveal>
             <div className="rounded-2xl border border-[#63d7ff]/30 bg-[#0e2743]/70 p-5">
-              <p className="text-xs uppercase tracking-[0.18em] text-[#b7eeff]">Capitale</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-[#b7eeff]">
+                Capitale
+              </p>
               <p className="mt-2 text-lg">Victoria</p>
             </div>
           </SectionReveal>
           <SectionReveal delay={0.1}>
             <div className="rounded-2xl border border-[#63d7ff]/30 bg-[#0e2743]/70 p-5">
-              <p className="text-xs uppercase tracking-[0.18em] text-[#b7eeff]">Cadre</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-[#b7eeff]">
+                Cadre
+              </p>
               <p className="mt-2 text-lg">Ocean Indien</p>
             </div>
           </SectionReveal>
           <SectionReveal delay={0.2}>
             <div className="rounded-2xl border border-[#63d7ff]/30 bg-[#0e2743]/70 p-5">
-              <p className="text-xs uppercase tracking-[0.18em] text-[#b7eeff]">Identite</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-[#b7eeff]">
+                Identite
+              </p>
               <p className="mt-2 text-lg">Bleu, turquoise, corail</p>
             </div>
           </SectionReveal>
@@ -152,21 +198,37 @@ export default function SeychellesMenu() {
 
       <section className="relative mx-auto max-w-7xl px-6 pb-16 md:px-8">
         <SectionReveal>
-          <h2 className="font-display mb-8 text-center text-5xl">Menu seychellois</h2>
+          <h2 className="font-display mb-8 text-center text-5xl">
+            Menu seychellois
+          </h2>
         </SectionReveal>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:auto-rows-fr">
           {menuItems.map((item, i) => (
-            <SectionReveal key={item.name} delay={0.1 * (i + 1)} className="h-full">
+            <SectionReveal
+              key={item.name}
+              delay={0.1 * (i + 1)}
+              className="h-full"
+            >
               <motion.article
                 whileHover={{ y: -10, rotateX: 6 }}
                 transition={{ duration: 0.35 }}
                 className="flex h-full flex-col rounded-3xl border border-[#63d7ff]/30 bg-[#0d243d]/80 p-4 [transform-style:preserve-3d]"
               >
-                <img src={item.image} alt={item.name} className="h-48 w-full rounded-2xl object-cover" />
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="h-48 w-full rounded-2xl object-cover"
+                />
                 <div className="flex-1 p-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#88ecff]">{item.course}</p>
-                  <h3 className="font-display mt-2 text-3xl md:min-h-[5.5rem]">{item.name}</h3>
-                  <p className="mt-3 text-sm leading-[1.75] text-white/75 md:min-h-[5.25rem]">{item.text}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#88ecff]">
+                    {item.course}
+                  </p>
+                  <h3 className="font-display mt-2 text-3xl md:min-h-[5.5rem]">
+                    {item.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-[1.75] text-white/75 md:min-h-[5.25rem]">
+                    {item.text}
+                  </p>
                 </div>
               </motion.article>
             </SectionReveal>
@@ -178,10 +240,18 @@ export default function SeychellesMenu() {
         <SectionReveal>
           <div className="overflow-hidden rounded-[2rem] border border-[#63d7ff]/30 bg-[#0d243d]/80">
             <div className="grid grid-cols-1 md:grid-cols-[1fr_1.05fr]">
-              <img src={signatureDrink.image} alt={signatureDrink.name} className="h-72 w-full object-cover md:h-full" />
+              <img
+                src={signatureDrink.image}
+                alt={signatureDrink.name}
+                className="h-72 w-full object-cover md:h-full"
+              />
               <div className="p-8 md:p-12">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#b7eeff]">Boisson signature</p>
-                <h2 className="font-display mt-3 text-4xl sm:text-5xl">{signatureDrink.name}</h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#b7eeff]">
+                  Boisson signature
+                </p>
+                <h2 className="font-display mt-3 text-4xl sm:text-5xl">
+                  {signatureDrink.name}
+                </h2>
                 <p className="mt-5 text-white/75">{signatureDrink.desc}</p>
               </div>
             </div>

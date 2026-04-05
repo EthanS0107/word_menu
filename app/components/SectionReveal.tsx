@@ -25,7 +25,11 @@ export default function SectionReveal({
   }, [isInView, controls]);
 
   return (
-    <div ref={ref} style={{ width, position: "relative" }} className={className}>
+    <div
+      ref={ref}
+      style={{ width, position: "relative" }}
+      className={className}
+    >
       <motion.div
         className="h-full"
         variants={{

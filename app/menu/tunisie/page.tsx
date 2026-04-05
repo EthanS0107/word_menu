@@ -122,8 +122,12 @@ export default function TunisieMenu() {
         <SectionReveal delay={0.1}>
           <div className="rounded-[2rem] border border-[#f27f8d]/30 bg-black/30 p-3">
             <div className="mb-3 flex items-center justify-between px-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#ffd0d4]">Diaporama</p>
-              <p className="text-xs text-white/65">{active + 1}/{slides.length}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#ffd0d4]">
+                Diaporama
+              </p>
+              <p className="text-xs text-white/65">
+                {active + 1}/{slides.length}
+              </p>
             </div>
             <div className="relative h-[420px] overflow-hidden rounded-[1.45rem] border border-white/10 md:h-[520px]">
               <AnimatePresence mode="wait">
@@ -140,8 +144,12 @@ export default function TunisieMenu() {
               </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-[#12070a]/85 to-transparent" />
               <div className="absolute bottom-5 left-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.14em]">{slides[active].title}</p>
-                <p className="mt-1 text-sm text-white/75">{slides[active].caption}</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.14em]">
+                  {slides[active].title}
+                </p>
+                <p className="mt-1 text-sm text-white/75">
+                  {slides[active].caption}
+                </p>
               </div>
             </div>
             <div className="mt-4 flex gap-2 px-2">
@@ -163,13 +171,20 @@ export default function TunisieMenu() {
         <SectionReveal>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-[0.8fr_1.2fr]">
             <div className="rounded-3xl border border-[#f27f8d]/25 bg-[#2a0f16]/65 p-6 md:p-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ffb7bf]">Histoire</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ffb7bf]">
+                Histoire
+              </p>
               <h2 className="font-display mt-3 text-4xl">Timeline</h2>
             </div>
             <div className="space-y-3">
               {timeline.map((item, idx) => (
-                <div key={item} className="rounded-2xl border border-[#f27f8d]/20 bg-[#1f0b12]/70 p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#ffb7bf]">Etape {idx + 1}</p>
+                <div
+                  key={item}
+                  className="rounded-2xl border border-[#f27f8d]/20 bg-[#1f0b12]/70 p-5"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#ffb7bf]">
+                    Etape {idx + 1}
+                  </p>
                   <p className="mt-2 text-white/78">{item}</p>
                 </div>
               ))}
@@ -180,17 +195,36 @@ export default function TunisieMenu() {
 
       <section className="relative mx-auto max-w-7xl px-6 pb-16 md:px-8">
         <SectionReveal>
-          <h2 className="font-display mb-8 text-center text-5xl">Menu tunisien</h2>
+          <h2 className="font-display mb-8 text-center text-5xl">
+            Menu tunisien
+          </h2>
         </SectionReveal>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:auto-rows-fr">
           {menuItems.map((item, i) => (
-            <SectionReveal key={item.name} delay={0.1 * (i + 1)} className="h-full">
-              <motion.article whileHover={{ y: -8 }} className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#f27f8d]/25 bg-[#1e0c12]/80">
-                <img src={item.image} alt={item.name} className="h-56 w-full object-cover" />
+            <SectionReveal
+              key={item.name}
+              delay={0.1 * (i + 1)}
+              className="h-full"
+            >
+              <motion.article
+                whileHover={{ y: -8 }}
+                className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#f27f8d]/25 bg-[#1e0c12]/80"
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="h-56 w-full object-cover"
+                />
                 <div className="flex-1 p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#ffb7bf]">{item.course}</p>
-                  <h3 className="font-display mt-2 text-3xl md:min-h-[5.5rem]">{item.name}</h3>
-                  <p className="mt-3 text-sm leading-[1.75] text-white/72 md:min-h-[5.25rem]">{item.text}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#ffb7bf]">
+                    {item.course}
+                  </p>
+                  <h3 className="font-display mt-2 text-3xl md:min-h-[5.5rem]">
+                    {item.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-[1.75] text-white/72 md:min-h-[5.25rem]">
+                    {item.text}
+                  </p>
                 </div>
               </motion.article>
             </SectionReveal>
@@ -202,10 +236,18 @@ export default function TunisieMenu() {
         <SectionReveal>
           <div className="overflow-hidden rounded-[2rem] border border-[#f27f8d]/30 bg-[#1f0b12]/80">
             <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr]">
-              <img src={signatureDrink.image} alt={signatureDrink.name} className="h-72 w-full object-cover md:h-full" />
+              <img
+                src={signatureDrink.image}
+                alt={signatureDrink.name}
+                className="h-72 w-full object-cover md:h-full"
+              />
               <div className="p-8 md:p-12">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ffb7bf]">Boisson signature</p>
-                <h2 className="font-display mt-3 text-4xl sm:text-5xl">{signatureDrink.name}</h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ffb7bf]">
+                  Boisson signature
+                </p>
+                <h2 className="font-display mt-3 text-4xl sm:text-5xl">
+                  {signatureDrink.name}
+                </h2>
                 <p className="mt-5 text-white/75">{signatureDrink.desc}</p>
               </div>
             </div>

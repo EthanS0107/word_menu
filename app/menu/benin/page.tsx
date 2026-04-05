@@ -95,10 +95,16 @@ export default function BeninMenu() {
 
               <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
                 <div>
-                  <h1 className="font-display text-4xl sm:text-5xl">Benin en mouvement</h1>
-                  <p className="mt-2 text-white/80">Couleurs franches, rythme fort, cuisine de caractere.</p>
+                  <h1 className="font-display text-4xl sm:text-5xl">
+                    Benin en mouvement
+                  </h1>
+                  <p className="mt-2 text-white/80">
+                    Couleurs franches, rythme fort, cuisine de caractere.
+                  </p>
                 </div>
-                <p className="rounded-full bg-black/45 px-3 py-1 text-xs text-white/75">{active + 1}/{slides.length}</p>
+                <p className="rounded-full bg-black/45 px-3 py-1 text-xs text-white/75">
+                  {active + 1}/{slides.length}
+                </p>
               </div>
             </div>
 
@@ -111,7 +117,11 @@ export default function BeninMenu() {
                   className={`overflow-hidden rounded-xl border ${i === active ? "border-[#FCD116]" : "border-white/20"}`}
                   aria-label={`Slide ${s.title}`}
                 >
-                  <img src={s.image} alt={s.title} className="h-14 w-full object-cover" />
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className="h-14 w-full object-cover"
+                  />
                 </button>
               ))}
             </div>
@@ -123,11 +133,14 @@ export default function BeninMenu() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_1.1fr]">
           <SectionReveal>
             <div className="rounded-3xl border border-white/15 bg-[#102116]/80 p-7 md:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9ef2c3]">Atmosphere</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9ef2c3]">
+                Atmosphere
+              </p>
               <h2 className="font-display mt-3 text-4xl">Tricolore vivant</h2>
               <p className="mt-4 text-white/75">
                 Cette page adopte une structure hero panoramique puis des blocs
-                compacts. Le contenu suit l'energie du drapeau: vert, rouge, jaune.
+                compacts. Le contenu suit l'energie du drapeau: vert, rouge,
+                jaune.
               </p>
               <div className="mt-6 flex gap-2">
                 <span className="h-2 w-14 rounded-full bg-[#008751]" />
@@ -140,16 +153,24 @@ export default function BeninMenu() {
           <SectionReveal delay={0.1}>
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-2xl border border-[#E8112D]/35 bg-[#1f1313]/75 p-5">
-                <p className="text-xs uppercase tracking-[0.18em] text-[#ff9fa8]">Capitale</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-[#ff9fa8]">
+                  Capitale
+                </p>
                 <p className="mt-2 text-lg">Porto-Novo</p>
               </div>
               <div className="rounded-2xl border border-[#008751]/35 bg-[#112016]/75 p-5">
-                <p className="text-xs uppercase tracking-[0.18em] text-[#9ef2c3]">Culture</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-[#9ef2c3]">
+                  Culture
+                </p>
                 <p className="mt-2 text-lg">Rythmes et artisanat</p>
               </div>
               <div className="col-span-2 rounded-2xl border border-[#FCD116]/35 bg-[#221d0f]/70 p-5">
-                <p className="text-xs uppercase tracking-[0.18em] text-[#ffe999]">Gout</p>
-                <p className="mt-2 text-lg">Cuisine franche, epicee et conviviale</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-[#ffe999]">
+                  Gout
+                </p>
+                <p className="mt-2 text-lg">
+                  Cuisine franche, epicee et conviviale
+                </p>
               </div>
             </div>
           </SectionReveal>
@@ -158,17 +179,40 @@ export default function BeninMenu() {
 
       <section className="relative mx-auto max-w-7xl px-6 pb-16 md:px-8">
         <SectionReveal>
-          <h2 className="font-display mb-8 text-center text-5xl">Menu beninois</h2>
+          <h2 className="font-display mb-8 text-center text-5xl">
+            Menu beninois
+          </h2>
         </SectionReveal>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:auto-rows-fr">
           {menuItems.map((item, i) => (
-            <SectionReveal key={item.name} delay={0.1 * (i + 1)} className="h-full">
-              <motion.article whileHover={{ y: -8 }} className="flex h-full flex-col overflow-hidden rounded-3xl border bg-[#102116]/85" style={{ borderColor: `${item.accent}66` }}>
-                <img src={item.image} alt={item.name} className="h-56 w-full object-cover" />
+            <SectionReveal
+              key={item.name}
+              delay={0.1 * (i + 1)}
+              className="h-full"
+            >
+              <motion.article
+                whileHover={{ y: -8 }}
+                className="flex h-full flex-col overflow-hidden rounded-3xl border bg-[#102116]/85"
+                style={{ borderColor: `${item.accent}66` }}
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="h-56 w-full object-cover"
+                />
                 <div className="flex-1 p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: item.accent }}>{item.course}</p>
-                  <h3 className="font-display mt-2 text-3xl md:min-h-[5.5rem]">{item.name}</h3>
-                  <p className="mt-3 text-sm leading-[1.75] text-white/75 md:min-h-[5.25rem]">{item.text}</p>
+                  <p
+                    className="text-xs font-semibold uppercase tracking-[0.18em]"
+                    style={{ color: item.accent }}
+                  >
+                    {item.course}
+                  </p>
+                  <h3 className="font-display mt-2 text-3xl md:min-h-[5.5rem]">
+                    {item.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-[1.75] text-white/75 md:min-h-[5.25rem]">
+                    {item.text}
+                  </p>
                 </div>
                 <div className="h-1" style={{ backgroundColor: item.accent }} />
               </motion.article>
@@ -180,10 +224,18 @@ export default function BeninMenu() {
       <section className="relative mx-auto max-w-7xl px-6 pb-24 md:px-8 md:pb-32">
         <SectionReveal>
           <div className="grid grid-cols-1 gap-5 rounded-[2rem] border border-white/15 bg-[#0f1f15]/85 p-3 md:grid-cols-[1fr_1fr]">
-            <img src={signatureDrink.image} alt={signatureDrink.name} className="h-72 w-full rounded-[1.4rem] object-cover md:h-full" />
+            <img
+              src={signatureDrink.image}
+              alt={signatureDrink.name}
+              className="h-72 w-full rounded-[1.4rem] object-cover md:h-full"
+            />
             <div className="rounded-[1.4rem] bg-[#102116]/85 p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9ef2c3]">Boisson signature</p>
-              <h2 className="font-display mt-3 text-4xl sm:text-5xl">{signatureDrink.name}</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9ef2c3]">
+                Boisson signature
+              </p>
+              <h2 className="font-display mt-3 text-4xl sm:text-5xl">
+                {signatureDrink.name}
+              </h2>
               <p className="mt-5 text-white/75">{signatureDrink.desc}</p>
             </div>
           </div>
