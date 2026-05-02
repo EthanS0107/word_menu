@@ -1,30 +1,30 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import PageTransition from "../../components/PageTransition";
 import SectionReveal from "../../components/SectionReveal";
 
-const flagImage = "/drapeau_Seychelles.png";
+const flagImage = "/seychelles/drapeau_Seychelles.png";
 
 const slides = [
   {
-    image: "/seychelles_plage_1.webp",
+    image: "/seychelles/seychelles_plage_1.webp",
     title: "Anse turquoise",
     caption: "Eaux claires et sable fin.",
   },
   {
-    image: "/seychelles_plage_2.webp",
+    image: "/seychelles/seychelles_plage_2.webp",
     title: "Lagons",
     caption: "Reflets marins et lumiere douce.",
   },
   {
-    image: "/seychelles_plage_3.jpg",
+    image: "/seychelles/seychelles_plage_3.jpg",
     title: "Cote sauvage",
     caption: "Nature dense et roche granitique.",
   },
   {
-    image: "/seychelles_plage_4.jpg",
+    image: "/seychelles/seychelles_plage_4.jpg",
     title: "Coucher",
     caption: "Couleurs chaudes et brise oceanique.",
   },
@@ -35,26 +35,26 @@ const menuItems = [
     course: "Entree",
     name: "Salade de Palmiste",
     text: "Coeur de palmier et legumes croquants au citron.",
-    image: "/salade_de_fruits_tropicaux.jpeg",
+    image: "/seychelles/salade_de_fruits_tropicaux.jpeg",
   },
   {
     course: "Plat",
     name: "Chutney de Requin",
     text: "Poisson mijote, gingembre, ail, tomates et piment.",
-    image: "/chutney_de_requin.webp",
+    image: "/seychelles/chutney_de_requin.webp",
   },
   {
     course: "Dessert",
     name: "Ladob",
     text: "Banane, patate douce et lait de coco vanille.",
-    image: "/le_ladob.jpg",
+    image: "/benin/le_ladob.jpg",
   },
 ];
 
 const signatureDrink = {
   name: "Jus tropical des Seychelles",
   desc: "Fruits presses minute, tres frais et parfumes pour prolonger la touche creole.",
-  image: "/seychelles_plage_5.jpg",
+  image: "/seychelles/seychelles_plage_5.jpg",
 };
 
 export default function SeychellesMenu() {
@@ -68,14 +68,16 @@ export default function SeychellesMenu() {
   }, []);
 
   return (
-    <PageTransition className="min-h-screen overflow-x-hidden bg-[#071428] text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_14%,rgba(46,168,255,0.22),transparent_40%),radial-gradient(circle_at_84%_20%,rgba(14,165,160,0.24),transparent_34%),radial-gradient(circle_at_70%_84%,rgba(255,153,110,0.2),transparent_36%)]" />
+    <PageTransition className="min-h-screen overflow-x-hidden bg-[#081828] text-white">
+      {/* Ocean-inspired vibrant gradients */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_14%,rgba(46,178,255,0.26),transparent_40%),radial-gradient(circle_at_84%_20%,rgba(14,185,170,0.28),transparent_34%),radial-gradient(circle_at_70%_84%,rgba(255,153,110,0.22),transparent_36%)]" />
       <div className="noise pointer-events-none absolute inset-0" />
 
+      {/* Hero */}
       <section className="relative mx-auto max-w-7xl px-6 pb-12 pt-22 md:px-8 md:pt-24">
         <SectionReveal>
           <div className="text-center">
-            <p className="mx-auto mb-6 w-fit rounded-full border border-[#63d7ff]/35 bg-[#0f2946]/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#b7eeff]">
+            <p className="mx-auto mb-6 w-fit rounded-full border border-[#63d7ff]/40 bg-[#63d7ff]/12 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#b7eeff]">
               Seychelles
             </p>
             <h1 className="font-display text-5xl leading-[1.03] sm:text-6xl md:text-7xl">
@@ -103,7 +105,7 @@ export default function SeychellesMenu() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="rounded-[1.6rem] border border-[#63d7ff]/45 bg-[#10314f]/65 p-3 shadow-[0_24px_80px_rgba(14,165,160,0.35)]"
+                className="rounded-[1.6rem] border border-[#63d7ff]/40 bg-[#10314f]/55 p-3 shadow-[0_24px_80px_rgba(14,185,170,0.3)] backdrop-blur-sm"
               >
                 <img
                   src={flagImage}
@@ -116,9 +118,10 @@ export default function SeychellesMenu() {
         </SectionReveal>
       </section>
 
+      {/* Slideshow */}
       <section className="relative mx-auto max-w-7xl px-6 pb-14 md:px-8">
         <SectionReveal>
-          <div className="rounded-[2rem] border border-white/10 bg-black/30 p-3">
+          <div className="rounded-[2rem] border border-white/10 bg-black/25 p-3 backdrop-blur-sm">
             <div className="relative h-[370px] overflow-hidden rounded-[1.45rem] border border-white/10 md:h-[510px]">
               <AnimatePresence mode="wait">
                 <motion.img
@@ -132,7 +135,7 @@ export default function SeychellesMenu() {
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               </AnimatePresence>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#071428]/82 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#081828]/82 to-transparent" />
               <div className="absolute bottom-5 left-5">
                 <p className="text-sm font-semibold uppercase tracking-[0.14em]">
                   {slides[active].title}
@@ -141,7 +144,7 @@ export default function SeychellesMenu() {
                   {slides[active].caption}
                 </p>
               </div>
-              <p className="absolute right-5 top-5 rounded-full bg-black/45 px-3 py-1 text-xs text-white/75">
+              <p className="absolute right-5 top-5 rounded-full bg-black/45 px-3 py-1 text-xs text-white/75 backdrop-blur-sm">
                 {active + 1}/{slides.length}
               </p>
             </div>
@@ -152,7 +155,7 @@ export default function SeychellesMenu() {
                   key={s.title}
                   type="button"
                   onClick={() => setActive(i)}
-                  className={`overflow-hidden rounded-xl border ${i === active ? "border-[#88ecff]" : "border-white/20"}`}
+                  className={`overflow-hidden rounded-xl border transition-all duration-300 ${i === active ? "border-[#88ecff] shadow-[0_0_12px_rgba(136,236,255,0.3)]" : "border-white/20"}`}
                   aria-label={`Slide ${s.title}`}
                 >
                   <img
@@ -167,35 +170,46 @@ export default function SeychellesMenu() {
         </SectionReveal>
       </section>
 
+      {/* Info cards */}
       <section className="relative mx-auto max-w-7xl px-6 pb-14 md:px-8">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <SectionReveal>
-            <div className="rounded-2xl border border-[#63d7ff]/30 bg-[#0e2743]/70 p-5">
+            <motion.div
+              whileHover={{ y: -4 }}
+              className="rounded-2xl border border-[#63d7ff]/25 bg-[#0e2743]/60 p-5 backdrop-blur-sm transition-colors hover:border-[#63d7ff]/40"
+            >
               <p className="text-xs uppercase tracking-[0.18em] text-[#b7eeff]">
                 Capitale
               </p>
               <p className="mt-2 text-lg">Victoria</p>
-            </div>
+            </motion.div>
           </SectionReveal>
           <SectionReveal delay={0.1}>
-            <div className="rounded-2xl border border-[#63d7ff]/30 bg-[#0e2743]/70 p-5">
+            <motion.div
+              whileHover={{ y: -4 }}
+              className="rounded-2xl border border-[#6cf2c7]/25 bg-[#0e2743]/60 p-5 backdrop-blur-sm transition-colors hover:border-[#6cf2c7]/40"
+            >
               <p className="text-xs uppercase tracking-[0.18em] text-[#b7eeff]">
                 Cadre
               </p>
               <p className="mt-2 text-lg">Ocean Indien</p>
-            </div>
+            </motion.div>
           </SectionReveal>
           <SectionReveal delay={0.2}>
-            <div className="rounded-2xl border border-[#63d7ff]/30 bg-[#0e2743]/70 p-5">
+            <motion.div
+              whileHover={{ y: -4 }}
+              className="rounded-2xl border border-[#ffb59b]/25 bg-[#0e2743]/60 p-5 backdrop-blur-sm transition-colors hover:border-[#ffb59b]/40"
+            >
               <p className="text-xs uppercase tracking-[0.18em] text-[#b7eeff]">
                 Identite
               </p>
               <p className="mt-2 text-lg">Bleu, turquoise, corail</p>
-            </div>
+            </motion.div>
           </SectionReveal>
         </div>
       </section>
 
+      {/* Menu */}
       <section className="relative mx-auto max-w-7xl px-6 pb-16 md:px-8">
         <SectionReveal>
           <h2 className="font-display mb-8 text-center text-5xl">
@@ -210,15 +224,19 @@ export default function SeychellesMenu() {
               className="h-full"
             >
               <motion.article
-                whileHover={{ y: -10, rotateX: 6 }}
+                whileHover={{ y: -10, rotateX: 4 }}
                 transition={{ duration: 0.35 }}
-                className="flex h-full flex-col rounded-3xl border border-[#63d7ff]/30 bg-[#0d243d]/80 p-4 [transform-style:preserve-3d]"
+                className="flex h-full flex-col rounded-3xl border border-[#63d7ff]/25 bg-[#0d243d]/70 p-4 [transform-style:preserve-3d] backdrop-blur-sm"
               >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="h-48 w-full rounded-2xl object-cover"
-                />
+                <div className="overflow-hidden rounded-2xl">
+                  <motion.img
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.5 }}
+                    src={item.image}
+                    alt={item.name}
+                    className="h-48 w-full rounded-2xl object-cover"
+                  />
+                </div>
                 <div className="flex-1 p-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#88ecff]">
                     {item.course}
@@ -236,9 +254,10 @@ export default function SeychellesMenu() {
         </div>
       </section>
 
+      {/* Signature drink */}
       <section className="relative mx-auto max-w-7xl px-6 pb-24 md:px-8 md:pb-32">
         <SectionReveal>
-          <div className="overflow-hidden rounded-[2rem] border border-[#63d7ff]/30 bg-[#0d243d]/80">
+          <div className="overflow-hidden rounded-[2rem] border border-[#63d7ff]/25 bg-[#0d243d]/70 backdrop-blur-sm">
             <div className="grid grid-cols-1 md:grid-cols-[1fr_1.05fr]">
               <img
                 src={signatureDrink.image}

@@ -35,7 +35,7 @@ export default function SubscribeButton({ priceId }: { priceId: string }) {
     <button
       onClick={handleSubscribe}
       disabled={loading}
-      className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition disabled:opacity-50"
+      className="w-full rounded-2xl bg-gradient-to-r from-[#E07A5F] to-[#F4A261] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(224,122,95,0.3)] transition-all duration-300 hover:translate-y-[-1px] hover:shadow-[0_12px_30px_rgba(224,122,95,0.35)] disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {loading ? "Redirection..." : "S'abonner pour 9.99€/mois"}
     </button>

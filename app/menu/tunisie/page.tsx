@@ -1,11 +1,11 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import PageTransition from "../../components/PageTransition";
 import SectionReveal from "../../components/SectionReveal";
 
-const flagImage = "/drapeau_Tunisie.webp";
+const flagImage = "/tunisie/drapeau_Tunisie.webp";
 
 const slides = [
   {
@@ -76,14 +76,16 @@ export default function TunisieMenu() {
   }, []);
 
   return (
-    <PageTransition className="min-h-screen overflow-x-hidden bg-[#12070a] text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_16%,rgba(210,66,84,0.24),transparent_42%),radial-gradient(circle_at_85%_20%,rgba(255,175,80,0.18),transparent_35%)]" />
+    <PageTransition className="min-h-screen overflow-x-hidden bg-[#1a0810] text-white">
+      {/* Warm vibrant gradients */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_16%,rgba(232,90,110,0.28),transparent_42%),radial-gradient(circle_at_85%_20%,rgba(255,175,80,0.22),transparent_35%),radial-gradient(circle_at_50%_80%,rgba(200,90,60,0.15),transparent_50%)]" />
       <div className="noise pointer-events-none absolute inset-0" />
 
+      {/* Hero */}
       <section className="relative mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 pb-16 pt-24 md:grid-cols-[1fr_1.05fr] md:px-8">
         <SectionReveal>
           <div className="space-y-7">
-            <p className="inline-flex rounded-full border border-[#f27f8d]/35 bg-[#3a111b]/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#ffd0d4]">
+            <p className="inline-flex rounded-full border border-[#ff8a93]/40 bg-[#ff8a93]/12 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#ffd0d4]">
               Tunisie
             </p>
 
@@ -107,7 +109,7 @@ export default function TunisieMenu() {
               <motion.div
                 whileHover={{ rotateX: 8, rotateY: -12, scale: 1.03 }}
                 transition={{ duration: 0.35 }}
-                className="rounded-2xl border border-[#f27f8d]/40 bg-[#2b0f17]/80 p-2 shadow-[0_20px_60px_rgba(130,30,45,0.45)]"
+                className="rounded-2xl border border-[#ff8a93]/40 bg-[#2b0f17]/80 p-2 shadow-[0_20px_60px_rgba(200,60,80,0.35)]"
               >
                 <img
                   src={flagImage}
@@ -120,7 +122,7 @@ export default function TunisieMenu() {
         </SectionReveal>
 
         <SectionReveal delay={0.1}>
-          <div className="rounded-[2rem] border border-[#f27f8d]/30 bg-black/30 p-3">
+          <div className="rounded-[2rem] border border-[#ff8a93]/25 bg-black/25 p-3 backdrop-blur-sm">
             <div className="mb-3 flex items-center justify-between px-2">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#ffd0d4]">
                 Diaporama
@@ -142,7 +144,7 @@ export default function TunisieMenu() {
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               </AnimatePresence>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#12070a]/85 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1a0810]/85 to-transparent" />
               <div className="absolute bottom-5 left-5">
                 <p className="text-sm font-semibold uppercase tracking-[0.14em]">
                   {slides[active].title}
@@ -158,7 +160,7 @@ export default function TunisieMenu() {
                   key={s.title}
                   type="button"
                   onClick={() => setActive(i)}
-                  className={`h-1.5 rounded-full ${i === active ? "w-10 bg-[#ff8a93]" : "w-4 bg-white/35"}`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${i === active ? "w-10 bg-[#ff8a93]" : "w-4 bg-white/35"}`}
                   aria-label={`Slide ${s.title}`}
                 />
               ))}
@@ -167,10 +169,11 @@ export default function TunisieMenu() {
         </SectionReveal>
       </section>
 
+      {/* Timeline */}
       <section className="relative mx-auto max-w-7xl px-6 pb-14 md:px-8">
         <SectionReveal>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-[0.8fr_1.2fr]">
-            <div className="rounded-3xl border border-[#f27f8d]/25 bg-[#2a0f16]/65 p-6 md:p-7">
+            <div className="rounded-3xl border border-[#ff8a93]/20 bg-gradient-to-br from-[#2a0f16]/80 to-[#1a0810]/80 p-6 md:p-7 backdrop-blur-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ffb7bf]">
                 Histoire
               </p>
@@ -178,21 +181,23 @@ export default function TunisieMenu() {
             </div>
             <div className="space-y-3">
               {timeline.map((item, idx) => (
-                <div
+                <motion.div
                   key={item}
-                  className="rounded-2xl border border-[#f27f8d]/20 bg-[#1f0b12]/70 p-5"
+                  whileHover={{ x: 4 }}
+                  className="rounded-2xl border border-[#ff8a93]/15 bg-[#1f0b12]/60 p-5 backdrop-blur-sm transition-colors hover:border-[#ff8a93]/30"
                 >
                   <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#ffb7bf]">
                     Etape {idx + 1}
                   </p>
                   <p className="mt-2 text-white/78">{item}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </SectionReveal>
       </section>
 
+      {/* Menu */}
       <section className="relative mx-auto max-w-7xl px-6 pb-16 md:px-8">
         <SectionReveal>
           <h2 className="font-display mb-8 text-center text-5xl">
@@ -208,13 +213,17 @@ export default function TunisieMenu() {
             >
               <motion.article
                 whileHover={{ y: -8 }}
-                className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#f27f8d]/25 bg-[#1e0c12]/80"
+                className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#ff8a93]/20 bg-[#1e0c12]/70 backdrop-blur-sm"
               >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="h-56 w-full object-cover"
-                />
+                <div className="overflow-hidden">
+                  <motion.img
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.5 }}
+                    src={item.image}
+                    alt={item.name}
+                    className="h-56 w-full object-cover"
+                  />
+                </div>
                 <div className="flex-1 p-6">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#ffb7bf]">
                     {item.course}
@@ -232,9 +241,10 @@ export default function TunisieMenu() {
         </div>
       </section>
 
+      {/* Signature drink */}
       <section className="relative mx-auto max-w-7xl px-6 pb-24 md:px-8 md:pb-32">
         <SectionReveal>
-          <div className="overflow-hidden rounded-[2rem] border border-[#f27f8d]/30 bg-[#1f0b12]/80">
+          <div className="overflow-hidden rounded-[2rem] border border-[#ff8a93]/25 bg-[#1f0b12]/70 backdrop-blur-sm">
             <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr]">
               <img
                 src={signatureDrink.image}
